@@ -3,15 +3,14 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="fragment" content="!">
-    <title>Media Blogger | Media Assembly Kit demo site.</title>
+    <title>title | Media Blogger</title>
     <link id="google-fonts-css" rel="stylesheet" href="//fonts.googleapis.com/css?family=Raleway:700,900,400">
     <link id="font-awesome-css" rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link id="mak-css" rel="stylesheet" href="/mak-simple/css/style.css?ver=v0.1.0">
     <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
     <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
   </head>
-  <body class="home">
+  <body class="post">
     <div id="page" class="hfeed site">
       <header id="masthead" role="banner" class="site-header">
         <h1 class="site-title"><a href="/mak-simple/" rel="home" class="homelink">Media Blogger</a></h1>
@@ -29,12 +28,32 @@
       </header>
       <div id="content" class="site-content">
         <main id="primary" role="main" class="site-main">
-          <div id="post-box" class="post-list">
-            <div class="loading"><i class="fa fa-refresh fa-5x fa-spin"></i><br><span>loading</span></div>
-          </div>
-          <div id="more-entry"></div>
+          <article class="post hentry">
+            <div id="thumbnail-box"></div>
+            <header class="entry-header">
+              <h1 class="entry-title"></h1>
+            </header>
+            <div class="entry-content">
+              <div id="entry-box">
+                <div class="loading"><i class="fa fa-refresh fa-5x fa-spin"></i><br><span>loading</span></div>
+              </div>
+            </div>
+            <footer class="entry-footer">
+              <div class="sns-btn"><a href="#" target="_blank" class="facebook"><i class="fa fa-facebook-official"></i> Facebook</a><a href="#" target="_blank" class="twitter"><i class="fa fa-twitter"></i> Twitter</a></div>
+              <div class="entry-meta">
+                <div class="entry-date"><i class="fa fa-calendar"></i>
+                  <time></time>
+                </div>
+                <div class="posted-in-category"><i class="fa fa-folder-open"></i><span class="cats"></span></div>
+                <div class="posted-author"><i class="fa fa-user"></i><span class="author"></span></div>
+                <div class="posted-in-tags"><i class="fa fa-tag"></i><span class="tags"></span></div>
+                <div class="posted-in-post-format"></div>
+              </div>
+            </footer>
+          </article>
         </main>
         <div id="secondary" role="complementary" class="widget-area">
+          <aside id="related-box" class="widget widget-related-post"></aside>
           <aside id="ranking-box" class="post-list widget widget-ranking"></aside>
         </div>
       </div>
@@ -45,21 +64,22 @@
     <script src="/mak-simple/js/app.js?ver=v0.1.0"></script>
     <script src="/mak-simple/js/wpjson-root.js?ver=v0.1.0"></script>
     <script src="/mak-simple/js/wpjson-ranking.js?ver=v0.1.0"></script>
-    <script src="/mak-simple/js/wpjson-postlist.js?ver=v0.1.0"></script>
+    <script src="/mak-simple/js/wpjson-post.js?ver=v0.1.0"></script>
     <script>
       (function($) {
-      	// HOME
-      	var lpath    = location.hash.split("/");
-      	var lpathend = lpath[lpath.length-1];
-      	if ( lpathend === '' ) {
-      		lpath.pop();
-      	}
-      	var page    = lpath[lpath.length-2];
-      	var pagenum = "";
-      	if ( page == 'page' ) {
-      		pagenum     = lpathend;
-      	}
-      	wpjsonPosts();
+      	// post
+      	$(window).load( function() {
+      		HashMonitor.addFunctions( function( now_hash, prev_hash ){
+      			if ( now_hash !== prev_hash ) {
+      				var hashobj  = location.hash.split("/");
+      				var id	 = hashobj.pop();
+      				wpjsonPost( 'post', 'posts', '/'+id );
+      				wpjsonRelated( id );
+      			}
+      		});
+      		
+      		setInterval( HashMonitor.monitoring, 1000/30 );
+      	});
       })(jQuery);
       
     </script>

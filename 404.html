@@ -1,58 +1,50 @@
 <!DOCTYPE html>
-<html lang="ja" ng-app="makApp">
-
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="fragment" content="!">
-  <base href="/">
-  <title>Media Assembly Kit</title>
-  <link rel="apple-touch-icon" href="apple-touch-icon.png">
-  <link rel="icon" href="favicon.ico">
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.2/normalize.min.css">
-  <link rel="stylesheet" id="font-awesome-css" href="//netdna.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.css?ver=4.3.0" type="text/css" media="all">
-  <link rel="stylesheet" href="/styles/loading-bar.css">
-  <link rel="stylesheet" href="/styles/style.css" />
-  <!--[if lt IE 10]>
-    <script src="//cdn.rawgit.com/jpillora/xdomain/0.6.17/dist/xdomain.min.js" slave="http://managed.nattodaisuki.com/proxy.html"></script>
-  <![endif]-->
-</head>
-
-<body>
-  <div id="page">
-    <header id="masthead" data-magellan-expedition="fixed">
-      <h1 class="site-title"><a href="/"><img src="/images/site-title@2x.png" width="184" height="34"></a></h1>
-      <nav id="header-nav-box">
-        <p class="header-menu-button" role="tab" aria-expanded="true"><i class="fa fa-bars"></i></span></p>
-        <p class="header-widget-button" role="tab" aria-expanded="false"><i class="fa fa-cogs"></i></span></p>
-      </nav>
-    </header>
-    <nav id="global-menu" class="side-nav-close" ng-controller="GlobalMenu" ng-bind-html="mak_menu"></nav>
-    <div id="content" class="row">
-      <div id="primary" class="content-area">
-        <main id="primary" ui-view="main"></main>
+<html lang="ja" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml" xmlns:mixi="http://mixi-platform.com/ns#">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 | Media Blogger</title>
+    <link id="google-fonts-css" rel="stylesheet" href="//fonts.googleapis.com/css?family=Raleway:700,900,400">
+    <link id="font-awesome-css" rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link id="mak-css" rel="stylesheet" href="/mak-simple/css/style.css?ver=v0.1.0">
+    <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+  </head>
+  <body class="error404">
+    <div id="page" class="hfeed site">
+      <header id="masthead" role="banner" class="site-header">
+        <h1 class="site-title"><a href="/mak-simple/" rel="home" class="homelink">Media Blogger</a></h1>
+        <nav id="site-navigation" role="navigation" class="main-navigation">
+          <button id="site-navigation-toggle" class="menu-toggle"><span class="screen-reader-text">MENU</span><i class="fa fa-bars"></i></button>
+          <div id="site-navigation-menu"></div>
+        </nav>
+        <div id="search-box">
+          <button id="search-box-toggle" class="search-box-toggle"><span class="screen-reader-text">Search</span><i class="fa fa-search"></i></button>
+          <form role="search" method="get" action="/mak-simple/search.html" class="search-form">
+            <input type="search" value="" name="s" placeholder="Search" class="search-field">
+            <button type="submit" class="search-submit"><i class="fa fa-search"></i><span class="screen-reader-text">検索</span></button>
+          </form>
+        </div>
+      </header>
+      <div id="content" class="site-content">
+        <main id="primary" role="main" class="site-main">
+          <article id="post-0" class="error404 not-found">
+            <header class="page-header">
+              <h1 class="page-title">ページが見つかりませんでした。</h1>
+            </header>
+            <section class="page-content">
+              <p>ここには何も見つかりませんでした。</p>
+            </section>
+          </article>
+        </main>
+        <div id="secondary" role="complementary" class="widget-area">
+        </div>
       </div>
-      <div id="secondary" class="widget-area-close">
-      </div>
+      <footer id="colophon" role="contentinfo" class="site-footer">
+        <p id="copyright">Copyright © 2015 DigitalCube Co. Ltd. All Rights Reserved.</p>
+      </footer>
     </div>
-    <footer id="footer">
-      <p id="copyright"><small>Copyright &copy; 2015 Webnist. All Rights Reserved.</small></p>
-    </footer>
-  </div>
-  <div id="overlay" class="close"></div>
-  <script src="/vendor/jquery-1.11.2.min.js"></script>
-  <script src="/vendor/angular.min.js"></script>
-  <script src="/vendor/angular-animate.min.js"></script>
-  <script src="/vendor/angular-ui-router.min.js"></script>
-  <script src="/vendor/angular-resource.min.js"></script>
-  <script src="/vendor/loading-bar.js"></script>
-  <script src="/mak-config.js"></script>
-  <script src="/core-scripts/app.js"></script>
-  <script src="/core-scripts/factorys/factory.js"></script>
-  <script src="/core-scripts/controllers/controller.js"></script>
-  <script src="/core-scripts/directives/directive.js"></script>
-  <script src="/scripts/views/view.js"></script>
-</body>
-
+    <script src="/mak-simple/js/app.js?ver=v0.1.0"></script>
+    <script src="/mak-simple/js/wpjson-root.js?ver=v0.1.0"></script>
+  </body>
 </html>

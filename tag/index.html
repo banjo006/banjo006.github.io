@@ -3,15 +3,14 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="fragment" content="!">
-    <title>Media Blogger | Media Assembly Kit demo site.</title>
+    <title>title | Media Blogger</title>
     <link id="google-fonts-css" rel="stylesheet" href="//fonts.googleapis.com/css?family=Raleway:700,900,400">
     <link id="font-awesome-css" rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link id="mak-css" rel="stylesheet" href="/mak-simple/css/style.css?ver=v0.1.0">
     <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
     <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
   </head>
-  <body class="home">
+  <body class="archive">
     <div id="page" class="hfeed site">
       <header id="masthead" role="banner" class="site-header">
         <h1 class="site-title"><a href="/mak-simple/" rel="home" class="homelink">Media Blogger</a></h1>
@@ -29,6 +28,12 @@
       </header>
       <div id="content" class="site-content">
         <main id="primary" role="main" class="site-main">
+          <header class="page-header">
+            <h1 class="page-title"></h1>
+            <div class="page-description">
+              <p></p>
+            </div>
+          </header>
           <div id="post-box" class="post-list">
             <div class="loading"><i class="fa fa-refresh fa-5x fa-spin"></i><br><span>loading</span></div>
           </div>
@@ -48,18 +53,28 @@
     <script src="/mak-simple/js/wpjson-postlist.js?ver=v0.1.0"></script>
     <script>
       (function($) {
-      	// HOME
-      	var lpath    = location.hash.split("/");
-      	var lpathend = lpath[lpath.length-1];
-      	if ( lpathend === '' ) {
-      		lpath.pop();
-      	}
-      	var page    = lpath[lpath.length-2];
-      	var pagenum = "";
-      	if ( page == 'page' ) {
-      		pagenum     = lpathend;
-      	}
-      	wpjsonPosts();
+      	// archive
+      	$(window).load( function() {
+      		HashMonitor.addFunctions( function( now_hash, prev_hash ){
+      			if ( now_hash !== prev_hash ) {
+      				var lpath	= location.pathname.split("/");
+      				var lpathend = lpath[lpath.length-1];
+      				if ( lpathend === '' ) {
+      					lpath.pop();
+      				}
+      				var taxonomy = lpath[lpath.length-1];
+      				var hashobj  = location.hash.split("/");
+      				var term	 = hashobj[1];
+      				var page	 = '';
+      				if ( hashobj.length > 2 ) {
+      					page	 = hashobj[3];
+      				}
+      				wpjsonPosts( taxonomy, term, page );
+      			}
+      		});
+      		
+      		setInterval( HashMonitor.monitoring, 1000/30 );
+      	});
       })(jQuery);
       
     </script>
