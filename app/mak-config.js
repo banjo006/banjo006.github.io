@@ -4,7 +4,7 @@
 	/* App Config */
 	var makConfig = angular.module('makConfig', []);
 	makConfig.value('makConfig', {
-		apiUrl: 'http://managed.nattodaisuki.com/',
+		apiUrl: 'http://master.example.org/',
 		menu_id: 'primary'
 	});
 
